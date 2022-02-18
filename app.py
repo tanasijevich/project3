@@ -7,6 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from sqlite3 import connect 
+import json
 
 from flask import (
     Flask,
@@ -14,7 +15,8 @@ from flask import (
     jsonify,
     request,
     redirect,
-    jsonify)
+    jsonify,
+    url_for)
 
 # Read data from csv
 #csv_file = "data/Chicago Health Atlas.csv"
@@ -114,7 +116,19 @@ def deceases(decease):
 
     session.close()
 
+    return jsonify(table_results)
+    session.close()
+
     return jsonify(decease_results)
+
+@app.route("/api/geojson")
+def map_data():
+    with open('data/chicago-community-areas.geojson', 'r') as file:
+        your_data = json.loads(file.read())
+    # print(your_data)
+    return jsonify(your_data)
+
+
 
 
 if __name__ == "__main__":
