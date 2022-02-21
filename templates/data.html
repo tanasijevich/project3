@@ -46,7 +46,9 @@
   <div class="container">
   
 
-    <h2>Mortality rate in different diseases and Hardship Index</h2>
+    <h3>Mortality rate of different diseases with Hardship Index,Adult Soda Consumption,Adult Smoking </h3>
+ 
+    
     
 
     <div class="row" >
@@ -59,11 +61,17 @@
           <option value="diabetes">Diabetes</option>
           <option value="diabetes_related">Diabetes related </option>
           <option value="alzheimer">Alzheimer's disease</option>
-          <option value="cancer">Cancer </option>
-          <option value="all">All Cause </option>
+          <option value="cancer"> Cancer </option>
+          <option value = "hypertension"> Hypertension </option>
+          <option value = "adult_obesity">  Adult Obesity </option>
+          <option value ="coronary_heart_disease"> Coronary Heart Disease </option>
+
+          <!--<option value="all"> All Cause </option>-->
         </select>        
-        <div id="scatter"></div>
+        
         <p>Note:The Hardship Index is a composite score reflecting hardship in the community (higher values indicate greater hardship). It incorporates unemployment, age dependency, education, per capita income, crowded housing, and poverty into a single score that allows comparison between geographies. It is highly correlated with other measures of economic hardship, such as labor force statistics, and with poor health outcomes. </p>
+        <div id="scatter"></div>
+        
       </div>
 
       <div class="col-md-6">
@@ -72,25 +80,19 @@
 
       </div>
     </div>
-<!--
-    <div class="row">
-      <div class="col-md-6"> 
+    
 
-        <label for="years">Director:</label>
-        <br>
-
-        <select name="director" id="director" onchange="optionDirectorChanged(this.value)">
-          <option value="chaplin"">Charles Chaplin</option>
-          <option value="hitchcock">Alfred Hitchcock</option>
-          <option value="nolan">Christopher Nolan</option>
-          <option value="kurosawa">Akira Kurosawa</option>
-        </select>        
-
-        <div id="v-bar"></div>
-
+    <div class = "row">
+      <div class="col-md-6">
+      <br>
+        
+        <div id="scatter_soda"></div>
       </div>
+      <div class="col-md-6">
+        <div id="scatter_smoking"></div>
+      </div>  
     </div>
-  -->
+
   </div>
   <br>
   

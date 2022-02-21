@@ -64,8 +64,10 @@ def data():
 @app.route("/api/community")
 def community_grid():
     session = Session(engine)
-  
-    results = session.query(Healthatlas.Name,Healthatlas.GEOID, Healthatlas.Population,Healthatlas.Longitude, Healthatlas.Latitude).all()
+    
+    
+    results = session.query(Healthatlas.Name,Healthatlas.Median_Household_Income,Healthatlas.Poverty_Rate,Healthatlas.Receiving_Food_Stamps,Healthatlas.Public_Assistance_Income,Healthatlas.High_School_Grad_Rate, Healthatlas.College_Grad_Rate,Healthatlas.Non_Hispanic_White,Healthatlas.Non_Hispanic_Black,Healthatlas.Asian_Pacific_Islander,Healthatlas.Hispanic_or_Latino,Healthatlas.Population_All,Healthatlas.Population_Infants,Healthatlas.Population_Juveniles,Healthatlas.Population_Young_Adults,Healthatlas.Population_Middle_Aged_Adults,Healthatlas.Population_Seniors).all()
+    #results = session.query(Healthatlas.Name,Healthatlas.GEOID, Healthatlas.Population,Healthatlas.Longitude, Healthatlas.Latitude).all()
     #results = pd.read_sql('SELECT Name,GEOID,Population,Longitude,Latitude FROM Chicago_Health_Atlas', engine)
     #results = engine.execute("SELECT Name,GEOID,Population,Longitude,Latitude FROM Chicago_Health_Atlas").fetchall()
     #session.query(Movies.title, Movies.director, Movies.year, Movies.rating, Movies.imdb_votes, Movies.imdb_score).all()
@@ -88,28 +90,42 @@ def deceases(decease):
     session = Session(engine)
 
     if decease == "diabetes":
-        results = session.query(Healthatlas.Name,Healthatlas.GEOID, Healthatlas.Population, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRDIAR_2015_2019, Healthatlas.HDX_2015_2019).all()
-    if decease == "diabetes_related":
-        results = session.query(Healthatlas.Name,Healthatlas.GEOID, Healthatlas.Population, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRDIBR_2015_2019, Healthatlas.HDX_2015_2019 ).all()
-    if decease == "alzheimer":
-        results = session.query(Healthatlas.Name,Healthatlas.GEOID, Healthatlas.Population, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRADR_2015_2019, Healthatlas.HDX_2015_2019).all()
-    if decease == "cancer":
-        results == session.query(Healthatlas.Name,Healthatlas.GEOID, Healthatlas.Population, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRCAR_2015_2019, Healthatlas.HDX_2015_2019).all()
-    if decease == "All" :
-        results = session.query(Healthatlas.Name,Healthatlas.GEOID, Healthatlas.Population, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRDTH_2015_2019, Healthatlas.HDX_2015_2019).all()
-
+        results = session.query(Healthatlas.Name, Healthatlas.Population_All, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRDIAR_2015_2019, Healthatlas.HDX_2015_2019, Healthatlas.HCSSP_2016_2018, Healthatlas.HCSSMKP_2016_2018).all()
+    elif decease == "diabetes_related":
+        results = session.query(Healthatlas.Name, Healthatlas.Population_All, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRDIBR_2015_2019, Healthatlas.HDX_2015_2019, Healthatlas.HCSSP_2016_2018, Healthatlas.HCSSMKP_2016_2018 ).all()
+    elif decease == "alzheimer":
+        results = session.query(Healthatlas.Name, Healthatlas.Population_All, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRADR_2015_2019, Healthatlas.HDX_2015_2019, Healthatlas.HCSSP_2016_2018, Healthatlas.HCSSMKP_2016_2018).all()
+    elif decease == "cancer":
+        results = session.query(Healthatlas.Name, Healthatlas.Population_All, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRCAR_2015_2019, Healthatlas.HDX_2015_2019, Healthatlas.HCSSP_2016_2018, Healthatlas.HCSSMKP_2016_2018).all()
+    elif decease == "hypertension":
+        results = session.query(Healthatlas.Name, Healthatlas.Population_All, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.HCSHYTP_2016_2018, Healthatlas.HDX_2015_2019, Healthatlas.HCSSP_2016_2018, Healthatlas.HCSSMKP_2016_2018).all()
+    elif decease == "adult_obesity":
+        results = session.query(Healthatlas.Name, Healthatlas.Population_All, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.HCSOBP_2016_2018, Healthatlas.HDX_2015_2019, Healthatlas.HCSSP_2016_2018, Healthatlas.HCSSMKP_2016_2018).all()
+    elif decease == "coronary_heart_disease":
+        results = session.query(Healthatlas.Name, Healthatlas.Population_All, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRCHDR_2015_2019, Healthatlas.HDX_2015_2019, Healthatlas.HCSSP_2016_2018, Healthatlas.HCSSMKP_2016_2018).all()
+    #elif decease == "all" :
+     #   results = session.query(Healthatlas.Name, Healthatlas.Population_All, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRDTH_2015_2019, Healthatlas.HDX_2015_2019).all()        
+    else:
+        results = session.query(Healthatlas.Name,Healthatlas.Population_All, Healthatlas.Longitude, Healthatlas.Latitude, Healthatlas.VRADR_2015_2019, Healthatlas.HDX_2015_2019, Healthatlas.HCSSP_2016_2018, Healthatlas.HCSSMKP_2016_2018).all()
+        
     
     
     results = [list(r) for r in results]
     
-    name = [result[5] for result in results]
+    name = [result[4] for result in results]
     
-    hardship = [result[6] for result in results]
+    hardship = [result[5] for result in results]
+    
+    soda = [result[6] for result in results]
+    
+    smoke = [result[7] for result in results]
     
     
     decease_results = {
         "decease_name": name,
         "hd_index": hardship,
+        "soda_con":soda,
+        "smoking":smoke,
     }
 
     session.close()
