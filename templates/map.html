@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Geo JSON</title>
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
+  <!-- Leaflet JavaScript code -->
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
+  <!-- D3 Library -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/map">Map</a>
+          </li>
+            
+         <!-- <li class="nav-item">
+            <a class="nav-link" href="/analysis">Analysis</a>
+          </li>-->
+  
+          <li class="nav-item">
+            <a class="nav-link" href="/data">Data</a>
+          </li>
+  
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="dropdown">
+
+          <select name="disease" id="disease" onchange="disease_parameter(this.value)">
+            <option value="diabetes_rate">Adult Diabetes Rate</option>
+            <option value="diabetes_mortality">Diabetes Mortality</option>
+            <option value="diabetes_related_mortality">Diabetes-Related Mortality </option>
+            <option value="cancer_mortality">Cancer Mortality </option>
+            <option value="alzheimer_mortality">Alzheimer's Mortality</option>
+            <option value="hypertension_rate">Adult Hypertension Rate</option>
+            <option value="obesity_rate">Adult Obesity Rate</option>
+            <option value="coronary_heart_disease_mortality">Coronary Heart Disease Mortality</option>
+          </select>        
+
+          <select name="health_indicator" id="health_indicator" onchange="health_parameter(this.value)">
+            <option value="adult_physical_inactivity">Adult Physical Inactivity</option>
+            <option value="adult_soda">Adult Soda Consumption</option>
+            <option value="routine_checkup">Routine Checkup </option>
+            <option value="adult_smoking">Adult Smoking </option>
+            <option value="adult_binge_drink">Adult Binge Drinking</option>
+            <option value="fruit_veg_servings">Adult Fruit and Veggies Servings</option>
+            <option value="access_fruit_veg">Easy Access to Fruits and Veggies</option>
+            <option value="low_food_access">Low Food Access</option>
+            <option value="pm">Particulate Matter (PM2.5 Concentration)</option>
+            <option value="uninsured">Uninsured (Pct Residents) </option>
+            <option value="hardship">Hardship Index </option>
+            <option value="life_expectancy">Life Expectancy (years)</option>
+            <option value="received_care">Received Needed Care Pct</option>
+            <option value="low_birthrate">Low Birthweight Rate</option>
+            <option value="overall_health_status">Overall Health Status</option>
+          </select>
+          
+          <select name="demographic_indicator" id="demographic_indicator" onchange="demographic_parameter(this.value)">
+            <option value="median_household_income">Median Household Income</option>
+            <option value="poverty_rate">Poverty Rate</option>
+            <option value="food_stamps">Receiving Food Stamps</option>
+            <option value="pub_assistance_income">Public Assistance Income</option>
+            <option value="hs_grad_rate">High School Graduation Rate</option>
+            <option value="college_grad_rate">College Graduation Rate</option>
+            <option value="non_hispanic_white">Non-Hispanic White</option>
+            <option value="non_hispanic_black">Non-Hispanic Black</option>
+            <option value="hispanic_or_latino">Hispanic or Latino</option>
+            <option value="pop_all">Population - All</option>
+            <option value="pop_infants">Population, Infants</option>
+            <option value="pop_juv">Population, Juveniles</option>
+            <option value="pop_young_adults">Population, Young Adults</option>
+            <option value="pop_mid_age">Population, Middle-Aged Adults</option>
+            <option value="pop_seniors">Population, Seniors</option>
+          </select>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="map-holder"> -->
+    <!-- <div class="container fill"> -->
+      <div id="map"></div>
+    <!-- </div> -->
+  <!-- </div>  -->
+
+
+  <!-- JavaScript file -->
+  <script type="text/javascript" src="../static/js/logic.js"></script>
+</body>
+
+</html>

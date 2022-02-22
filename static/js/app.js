@@ -24,6 +24,7 @@ d3.json("api/community").then((data) => {
 function buildDeceaseChart(decease) {
 
   console.log(decease);
+  console.log("test");
 
   d3.json(`api/deceases/${decease}`).then((data) => {
 

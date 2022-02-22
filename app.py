@@ -1,5 +1,6 @@
 # import necessary libraries
 # from models import create_classes
+from distutils.log import debug
 import pandas as pd
 import os
 import sqlalchemy
@@ -19,17 +20,17 @@ from flask import (
     url_for)
 
 # Read data from csv
-#csv_file = "data/Chicago Health Atlas.csv"
-#df = pd.read_csv(csv_file)
-#df.head()
-#df.rename(columns={"VRDIBR_2015-2019":"VRDIBR_2015_2019","VRDIAR_2015-2018":"VRDIAR_2015_2018","VRDTH_2015-2019":"VRDTH_2015_2019","VRCAR_2015-2019":"VRCAR_2015_2019","VRADR_2015-2019":"VRADR_2015_2019","HDX_2015-2019":"HDX_2015_2019"},inplace=True)
+# csv_file = "data/Chicago Health Atlas.csv"
+# df = pd.read_csv(csv_file)
+# df.head()
+# df.rename(columns={"VRDIBR_2015-2019":"VRDIBR_2015_2019","VRDIAR_2015-2018":"VRDIAR_2015_2018","VRDTH_2015-2019":"VRDTH_2015_2019","VRCAR_2015-2019":"VRCAR_2015_2019","VRADR_2015-2019":"VRADR_2015_2019","HDX_2015-2019":"HDX_2015_2019"},inplace=True)
 
-#creating sqlite engine to create database
-#engine = create_engine('sqlite:///data/Chicago_Health_database.db')
-#engine = create_engine('sqlite:///C:/Users/doyel/Desktop/project3_flask_ex1/data/mydatabase.db')
-#Table name : Chicago_Health_Atlas
+# creating sqlite engine to create database
+# engine = create_engine('sqlite:///data/Chicago_Health_database.db')
+# engine = create_engine('sqlite:///C:/Users/doyel/Desktop/project3_flask_ex1/data/mydatabase.db')
+# Table name : Chicago_Health_Atlas
 
-#df.to_sql('Chicago_Health_Atlas',con=engine,if_exists='replace')
+# df.to_sql('Chicago_Health_Atlas',con=engine,if_exists='replace')
 #####################################################################
 engine = create_engine("sqlite:///data/mydatabase.db")
 
@@ -58,6 +59,11 @@ def home():
 def data():
 
     return render_template("data.html")
+
+@app.route("/map")
+def map():
+
+    return render_template("map.html")
 
 
 # ---------------------------------------------------------
@@ -114,16 +120,15 @@ def deceases(decease):
         "hd_index": hardship,
     }
 
-    session.close()
+    print(decease_results)
 
-    return jsonify(table_results)
     session.close()
 
     return jsonify(decease_results)
 
 @app.route("/api/geojson")
 def map_data():
-    with open('data/chicago-community-areas.geojson', 'r') as file:
+    with open('data/geo.json', 'r') as file:
         your_data = json.loads(file.read())
     # print(your_data)
     return jsonify(your_data)
@@ -132,4 +137,4 @@ def map_data():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
