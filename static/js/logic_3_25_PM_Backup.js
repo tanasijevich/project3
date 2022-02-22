@@ -1,23 +1,66 @@
 // Initializaton
+// demographic_pull = "poverty_rate"
+// demographic_code = "Poverty_Rate"
+// health_pull = "low_food_access"
+// health_code = "LFA_2019"
+// disease_pull = "diabetes_rate"
+// disease_code = "HCSDIAP_2016-2018"
 
-  demographic_pull = "median_household_income"
-  demographic_code = "Median_Household_Income"
+// var myMap = null;
+
+
+function updatemap(health_code){
+  // console.log("test")
+  // console.log(health_code)
+  // console.log(health_pull)
+
+  d3.json(queryUrl).then(function (data) {
+    // Once we get a response, send the data.features object to the createFeatures function.
+    // console.log(data.features);
+    // map.off();
+    // map.remove();
+    // console.log(data.features.community)
+    // myMap.remove()
+    // if (myMap !== undefined && myMap !== null) {
+      console.log("test")
+      // console.log(myMap); // nothing should actually happen to the value of mymap  
+      // myMap.remove(); // should remove the map from UI and clean the inner children of DOM element
+      console.log("test")
+      // console.log(myMap); // nothing should actually happen to the value of mymap
+    // }
+    createFeatures(data.features);
+    // layer.getPopup().setContent("123");
+    // layer.getPopup().update();
+
+  });
+
+}
+
+
+
+  // Until Pulldowns are working - assign demographic, health indicator and chronic disease variables of interest
+  // demographic_pull = "Poverty Rate"
+  // health_pull = "Low Food Access"
+  // disease_pull = "Diabetes Mortality"
+
+  demographic_pull = "poverty_rate"
+  demographic_code = "Poverty_Rate"
   health_pull = "low_food_access"
   health_code = "LFA_2019"
   disease_pull = "diabetes_rate"
   disease_code = "HCSDIAP_2016-2018"
-
+ 
+  // Need If then statements to convert good labels to database codes - following is placeholders
+  // demographic_code = "POV_2015-2019"
+  // health_code = "LFA_2019"
+  // disease_code = "HDX_2015_2019"
+  
+  // Create Variable to Pass Disease and Demographic Variables of Interest to the Map
+  // var horz = "LFA_2019"
+  // var vert = "HDX_2015_2019"
   
   function createFeatures(communityData) {
-
-    // Solve problem of updating map after initializaion
-    // https://stackoverflow.com/questions/19186428/refresh-leaflet-map-map-container-is-already-initialized
-
-    var container = L.DomUtil.get('map');
-    if(container != null){
-    container._leaflet_id = null;
-    }
-
+  
     function onEachFeature(feature, layer) {
       var demographic = feature.properties[demographic_code]
       var health = feature.properties[health_code]
@@ -32,17 +75,24 @@
       onEachFeature: onEachFeature
     });
   
+    // Send our communities layer to the createMap function/
+    // if (myMap !== undefined && mymap !== null) {
+    //   myMap.remove(); // should remove the map from UI and clean the inner children of DOM element
+    //   console.log(myMap); // nothing should actually happen to the value of mymap
+    // }
     createMap(communities);
     // console.log(communities);
   }
 
 
-  counter = 0
-
+  
   function createMap(communities) {
 
-    // Check if myMap exists - if so - remove and re-create (Intent is to avoid error that map already exists)
-    console.log(counter)
+
+    // if (myMap !== undefined && mymap !== null) {
+    //   myMap.remove(); // should remove the map from UI and clean the inner children of DOM element
+    //   console.log(myMap); // nothing should actually happen to the value of mymap
+    // }
 
     // Create the base layers.
     var street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -72,30 +122,21 @@
       layers: [street, communities]
     });
 
+    // this.myMap = L.map(this.mapContainer.nativeElement, {
+    //   center: [41.8181, -87.6298],
+    //   zoom: 10,
+    //   layers: [street, communities]
+    // });
+  
     // Create a layer control.
     // Pass it our baseMaps and overlayMaps.
     // Add the layer control to the map.
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(myMap);
-
-    counter = counter +1
-    // console.log(counter)
 }
 
 let queryUrl="http://127.0.0.1:5000/api/geojson"
-
-call_json()
-
-function call_json(){
-  d3.json(queryUrl).then(function (data) {
-    // Once we get a response, send the data.features object to the createFeatures function.
-    // console.log(data.features);
-    // console.log(data.features.community)
-    createFeatures(data.features);
-  });
-  
-}
 d3.json(queryUrl).then(function (data) {
   // Once we get a response, send the data.features object to the createFeatures function.
   // console.log(data.features);
@@ -130,7 +171,7 @@ function disease_parameters(new_disease){
     disease_code = "VRCHDR_2015_2019"
   }
   console.log(disease_pull + " " + disease_code)
-  call_json()
+  // updatemap(disease_code)
 }
 
 function health_parameters(new_health){
@@ -187,7 +228,7 @@ function health_parameters(new_health){
     health_code = "HCSOHSP_2016-2018"
   }
   console.log(health_pull + " " + health_code)
-  call_json()
+  // updatemap(health_code)
 }
 
 function demographic_parameters(new_demographic){
@@ -238,7 +279,6 @@ function demographic_parameters(new_demographic){
     demographic_code = "Population_Seniors"
   }
   console.log(demographic_pull + " " + demographic_code)
-  call_json()
 }
 
 
