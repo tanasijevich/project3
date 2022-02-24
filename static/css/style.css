@@ -1,17 +1,3 @@
-/* body {
-  padding: 0;
-  margin: 0;
-}
-
-#map,
-body,
-html {
-  height: 100%;b
-} */
-
-
-/* Alternate css styling */
-/* https://gis.stackexchange.com/questions/62491/sizing-leaflet-map-inside-bootstrap */
 #map
 {
     width: 100px;
@@ -47,20 +33,13 @@ html, body
 Add Mandakini css
 .left-image {
   width: 200px;
-
   float: left;
-
   margin-right: 15px;
-
 }
-
 .right-images {
-
   width: 150px;
   margin-right: 5px;
 }
-
 .prediction {
-
   font-size: 26px;
 } */
