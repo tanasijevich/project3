@@ -13,8 +13,6 @@
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
-  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
-
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -42,28 +40,19 @@
 </body>
 </html>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item"> -->
-          <!-- <a class="nav-link active" aria-current="page" href="/">Home</a> -->
-        <!-- </li> -->
-
-        <li class="nav-item">
-          <a class="nav-link" href="/data">Data</a>
-          <a class="nav-link" href="/map">Map</a>
-        </li>
-
+<div class="container">
+  <div class="menu">
+      <ul>
+          <li class="logo"></li><img src="../static/graphics/logo.png"></li>
+          <li><a class="active" href="/">Home</a></li>
+          <li><a class="active" href="/data.html">Data</a></li>
+          <li><a class="active" href="/templates/map.html">Map</a></li>
       </ul>
+  </div>
       
     </div>
   </div>
-</nav>
+
 
 <body>
     <body style="background-color:#09427D">
@@ -85,8 +74,6 @@
             <img src="../static/graphics/logo5.png">
           </div>
         </div>
-    </div>
-
-    
+    </div>    
 </body>
 </html>
