@@ -53,20 +53,17 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route("/data")
+@app.route("/data.html")
 def data():
 
     return render_template("data.html")
 
-@app.route("/map")
+@app.route("/templates/map.html")
 def map():
 
     return render_template("map.html")
 
-@app.route("/plot")
-def plot():
 
-    return render_template("plot.html")
 # ---------------------------------------------------------
 
 # API to call "when data.html" page is loading with community information table
