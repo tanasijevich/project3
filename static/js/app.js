@@ -59,7 +59,7 @@ var fit = {
     var data = [ trace1,fit];
     
     var layout = { 
-      title: 'Mortality rate of the disease with Hardship index',
+      title: 'Chronic Disease vs Hardship Index',
     };
     
     var config = {responsive: true}
