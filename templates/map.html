@@ -22,7 +22,7 @@
   <script src="https://d3js.org/d3.v5.min.js"></script>
 
   <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/mapsstyle.css">
 </head>
 
 <body>
@@ -35,9 +35,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/map">Map</a>
-          </li>
+          <!-- <li class="nav-item"> -->
+            <!-- <a class="nav-link active" aria-current="page" href="/map">Map</a> -->
+          <!-- </li> -->
             
          <!-- <li class="nav-item">
             <a class="nav-link" href="/analysis">Analysis</a>
@@ -45,6 +45,7 @@
   
           <li class="nav-item">
             <a class="nav-link" href="/data">Data</a>
+            <a class="nav-link" href="/map">Map</a>
           </li>
   
         </ul>
@@ -53,11 +54,22 @@
     </div>
   </nav>
   
+  <body>
+    <body style="background-color:#09427D">
+    </div>
+    <div class="mapweb-picture">
+        <img src="../static/graphics/logo3.png">
+    </div>
+  <div class="banner">
+    <div class="data-text">
+        <h1><strong>Mapping Chronic <br> Disease in Chicago</strong></h1>
+        <p>Chicago is comprised of 77 community areas.<br>Use this map to get an overview of chronic disease, health indicators, and demographics by community area.</p>
+ 
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="dropdown">
-
+          <h5>Chronic Disease</h5>
           <select name="disease" id="disease" onchange="disease_parameter(this.value)">
             <option value="diabetes_rate">Adult Diabetes Rate</option>
             <option value="diabetes_mortality">Diabetes Mortality</option>
@@ -68,7 +80,8 @@
             <option value="obesity_rate">Adult Obesity Rate</option>
             <option value="coronary_heart_disease_mortality">Coronary Heart Disease Mortality</option>
           </select>        
-
+          <br>
+          <h5>Health Indicator</h5>
           <select name="health_indicator" id="health_indicator" onchange="health_parameter(this.value)">
             <option value="adult_physical_inactivity">Adult Physical Inactivity</option>
             <option value="adult_soda">Adult Soda Consumption</option>
@@ -86,7 +99,8 @@
             <option value="low_birthrate">Low Birthweight Rate</option>
             <option value="overall_health_status">Overall Health Status</option>
           </select>
-          
+          <br>
+          <h5>Demographic</h5>
           <select name="demographic_indicator" id="demographic_indicator" onchange="demographic_parameter(this.value)">
             <option value="median_household_income">Median Household Income</option>
             <option value="poverty_rate">Poverty Rate</option>
@@ -112,7 +126,9 @@
 
   <!-- <div id="map-holder"> -->
     <!-- <div class="container fill"> -->
+    <div class="mapbox">
       <div id="map"></div>
+    </div>
     <!-- </div> -->
   <!-- </div>  -->
 
