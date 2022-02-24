@@ -23,7 +23,7 @@
       var health = feature.properties[health_code]
       var disease = feature.properties[disease_code]
       // console.log(disease)
-      layer.bindPopup("<h6>" + feature.properties.community + "</h6> <hr> <h6>" + disease_pull + ": " + disease + "</h6> <hr> <h6>" + health_pull + ": " + health + "</h6> <hr> <h6>" + demographic_pull + ": " + demographic + "</h6> <hr> <h6>");
+      layer.bindPopup("<h6>" + feature.properties.community + "</h6> <hr> <h6>" + demographic_pull + ": " + demographic + "</h6> <hr> <h6>" + health_pull + ": " + health + "</h6> <hr> <h6>" + disease_pull + ": " + disease +"</h6>");
     }
   
     // Create a GeoJSON layer that contains the features array on the communityData object.
