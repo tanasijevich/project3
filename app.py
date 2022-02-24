@@ -57,6 +57,11 @@ def data():
 
     return render_template("data.html")
 
+@app.route("/map")
+def map():
+
+    return render_template("map.html")
+
 
 # ---------------------------------------------------------
 
@@ -131,6 +136,13 @@ def deceases(decease):
     session.close()
 
     return jsonify(decease_results)
+
+@app.route("/api/geojson")
+def map_data():
+    with open('data/geo.json', 'r') as file:
+        your_data = json.loads(file.read())
+    # print(your_data)
+    return jsonify(your_data)
 
 
 if __name__ == "__main__":

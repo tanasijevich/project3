@@ -1,5 +1,3 @@
-
-//this api generates a table containing community information 
 d3.json("api/community").then((data) => {
 
   console.log(data)
