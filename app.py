@@ -63,6 +63,12 @@ def map():
 
     return render_template("map.html")
 
+@app.route("/templates/d3_chart.html")
+def d3_chart():
+    return render_template("d3_chart.html")
+
+
+
 
 # ---------------------------------------------------------
 
@@ -144,6 +150,18 @@ def map_data():
         your_data = json.loads(file.read())
     # print(your_data)
     return jsonify(your_data)
+
+@app.route('/api/d3_chart/<field_x>/<field_y>')
+def d3_chart_api(field_x, field_y):
+    session = Session(engine)
+    x_column = getattr(Healthatlas, field_x)
+    y_column = getattr(Healthatlas, field_y)
+    results = session.query(x_column, y_column).all()
+    results = [list(r) for r in results]
+    session.close()
+    return jsonify(results)
+
+
 
 
 if __name__ == "__main__":
