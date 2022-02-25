@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Site</title>
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+  crossorigin=""/>
+
+  <!-- Leaflet JavaScript code -->
+  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+  crossorigin=""></script>
+
+  <!-- D3 library -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="../static/css/pagesstyle.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <!-- <li class="nav-item"> -->
+                <!-- <a class="nav-link active" aria-current="page" href="/">Home</a> -->
+              <!-- </li> -->
+      
+              <li class="nav-item">
+                <!-- <a class="nav-link" href="{{ url_for('data') }}">Data</a> -->
+                <!-- <a class="nav-link" href="{{ url_for('map') }}">Map</a> -->
+                <!-- <a class="nav-link" href="{{ url_for('d3_chart') }}">D3 Chart</a> -->
+                <!-- <li class="logo"></li><img src="../static/graphics/logo.png"></li> -->
+                <li><a class="active" href="/">Home</a></li>
+                <li><a class="active" href="/data.html">Data</a></li>
+                <li><a class="active" href="/templates/map.html">Map</a></li>
+                <li><a class="active" href="templates/d3_chart.html">Chart</a></li>
+              </li>
+      
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+
+        <header>
+          <h2>Chicago: Chronic Disease</h2>
+        </header>
+        <p><span><label for="y-axis">Select y-axis</label></span>
+        <select id="y-value">
+            <option value="HCSDIAP_2016-2018">Adult Diabetes Rate</option>
+            <option value="VRDIAR_2015_2019">Diabetes Mortality </option>
+            <option value="VRDIBR_2015_2019">Diabetes-Related Mortality </option>
+            <option value="VRCAR_2015_2019">Cancer Mortality </option>
+            <option value="VRADR_2015_2019">Alzheimer's Mortality </option>
+            <option value="HCSHYTP_2016_2018">Hypertension </option>
+            <option value="HCSOBP_2016_2018">Adult Obestity </option>
+            <option value="VRCHDR_2015_2019">Coronary Heart Disease Mortality </option>
+        </select>
+        <p><span><label for="x-axis">Select x-axis</label></span>
+        <select id="x-value">
+            <option value="HCSPAP_2016-2018">Adult Physical Inactivity</option>
+            <option value="HCSSP_2016_2018">Adult Soda Consumption </option>
+            <option value="HCSRCP_2016_2018">Routine Checkup </option>
+            <option value="HCSSMKP_2016_2018">Adult Smoking </option>
+            <option value="HCSBDP_2016-2018">Adult Binge Drinking</option>
+            <option value="HCSFVP_2016-2018">Adult Fruit and Veggies Servings </option>
+            <option value="HCSFVAP_2016-2018">Easy Access to Fruits and Veggies</option>
+            <option value="LFA_2019">Low Food Access</option>
+            <option value="PMC_2020">Particulate Matter</option>
+            <option value="UNS_2015-2019">Uninsured </option>
+            <option value="HDX_2015_2019">Hardship Index</option>
+            <option value="VRLE_2019">Life Expectancy</option>
+            <option value="HCSNCP_2016-2018">Received Needed Care</option>
+            <option value="VRBWP_2013-2017">Low Birthweight </option>
+            <option value="HCSOHSP_2016-2018">Over Health Status</option>
+        </select>
+            
+        <button onclick="setGraph()">submit</button>
+         
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script>
+            
+            function drawGraph(xText, yText) {
+                $('svg').remove();
+                let margin = {top: 20, right: 20, bottom: 30, left: 40},
+                    width = 960 - margin.left - margin.right,
+                    height = 500 - margin.top - margin.bottom;
+                let xValue = function(d) { return d[0];}, 
+                    xScale = d3.scale.linear().range([0, width]), 
+                    xMap = function(d) { return xScale(xValue(d));}, 
+                    xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+            
+               
+                let yValue = function(d) { return d[1];}, 
+                    yScale = d3.scale.linear().range([height, 0]), 
+                    yMap = function(d) { return yScale(yValue(d));}, 
+                    yAxis = d3.svg.axis().scale(yScale).orient("left");
+            
+                
+                let cValue = function(d) { return d.Conf;},
+                    color = d3.scale.category20();
+            
+              
+                let svg = d3.select("body").append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            
+                let tooltip = d3.select("body").append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", 0);
+        
+                d3.json("/api/d3_chart/" + xText + '/' + yText, function(error, data) {
+
+                  console.log(xText)
+                  console.log(yText)
+            
+
+                //  data.forEach(function(d) {
+                //     d[yText] = +d[yText];
+                //     d[xText] = +d[xText];
+                //   });
+                // data = [[x, y]]
+            
+                  xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
+                  yScale.domain([d3.min(data, yValue)-1, d3.max(data, yValue)+1]);
+            
+    console.log(xScale.domain())
+                  svg.append("g")
+                      .attr("class", "x axis")
+                      .attr("transform", "translate(0," + height + ")")
+                      .call(xAxis)
+                    .append("text")
+                      .attr("class", "label")
+                      .attr("x", width)
+                      .attr("y", -6)
+                      .style("text-anchor", "end")
+                      .text(xText);
+            
+                  svg.append("g")
+                      .attr("class", "y axis")
+                      .call(yAxis)
+                    .append("text")
+                      .attr("class", "label")
+                      .attr("transform", "rotate(-90)")
+                      .attr("y", 6)
+                      .attr("dy", ".71em")
+                      .style("text-anchor", "end")
+                      .text(yText);
+            
+                  svg.selectAll(".dot")
+                      .data(data)
+                    .enter().append("circle")
+                      .attr("class", "dot")
+                      .attr("r", 3.5)
+                      .attr("cx", xMap)
+                      .attr("cy", yMap)
+                    //   .style("fill", function(d) { return color(cValue(d));}) 
+                    //   .on("mouseover", function(d) {
+                    //       tooltip.transition()
+                    //            .duration(200)
+                    //            .style("opacity", .9);
+                    //       tooltip.html(d["Player"] + "<br/> " + d.School + "<br/>(" + xValue(d) 
+                    //         + ", " + yValue(d) + ")")
+                    //            .style("left", (d3.event.pageX + 10) + "px")
+                    //            .style("top", (d3.event.pageY - 28) + "px");
+                    //   })
+                    //   .on("mouseout", function(d) {
+                    //       tooltip.transition()
+                    //            .duration(500)
+                    //            .style("opacity", 0);
+                    //   });
+            
+                  let legend = svg.selectAll(".legend")
+                      .data(color.domain())
+                    .enter().append("g")
+                      .attr("class", "legend")
+                      .attr("transform", function(d, i) { return "translate(10," + (i+7) * 20 + ")"; });
+            
+                  legend.append("rect")
+                      .attr("x", width - 18)
+                      .attr("width", 18)
+                      .attr("height", 18)
+                      .style("fill", color);
+            
+
+                  legend.append("text")
+                      .attr("x", width - 24)
+                      .attr("y", 9)
+                      .attr("dy", ".35em")
+                      .style("text-anchor", "end")
+                      .text(function(d) { return d;})
+                });
+            }
+            
+            drawGraph("","");
+            
+            function setGraph() {
+                drawGraph($('#x-value').val(), $('#y-value').val());
+            }
+            </script>
+        </body>
+</html>

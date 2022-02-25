@@ -1,0 +1,193 @@
+<!DOCTYPE html lang="en-us">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Site</title>
+  
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pagesstyle.css') }}">
+  
+  </head>
+  
+  <body>
+    <body style="background-color:#09427D">
+
+      <div class="container">
+        <div class="menu">
+            <ul>
+                <li class="logo"></li><img src="../static/graphics/logo.png"></li>
+                <li><a class="active" href="/">Home</a></li>
+                <li><a class="active" href="/templates/data.html">Data</a></li>
+                <li><a class="active" href="/templates/map.html">Map</a></li>
+                <li><a class="active" href="d3_chart.html">Chart</a></li>
+            </ul>
+        </div>
+  
+      <div class="banner">
+          <div class="data-text">
+            <div class="data-picture">
+              <img src="../static/graphics/logo3.png">
+            </div>
+            <h1><strong>Data Dictionary</strong></h1>
+              <br>
+              <p>Demographic data was collected from the Chicago Health Atlas. For this database, we idenitfied demographic population descriptors as well as various health indicators to provide behavioral, social, and environmental for context.</p>
+              <br>
+              <div class="row">
+              <div class="column"> <h4>Idenitfied Demographics</h4>
+              <br>
+                <details><summary>Population by Race/Ethnicity</summary>
+                  <p class="tab1">
+                    Non-Hispanic White (% of residents)
+                    <br>
+                    Non-Hispanic Black (% of residents)
+                    <br>
+                    Asian or Pacific Islander (% of residents)
+                    <br>
+                    Hispanic or Latino (% of residents)
+                  </p></details>
+                <details><summary>Education Level</summary>
+                  <p class="tab1">
+                    High school graudation rate: Rate of residents or older with at least a high school degree: including GED and any higher education
+                    <br>
+                    College graudation rate: Rate of residents 25 or older with a four-year college (bachelor's) degree or higher
+                  </p></details>
+                <details><summary>Population by Age</summary>
+                  <p class="tab1">
+                    Population, Infants (0-4 years)
+                    <br>
+                    Population, Juveniles (5-17 years) 
+                    <br>
+                    Population, Young Adults (18-39 years) 
+                    <br>
+                    Population, Middle-Aged Adults (40-64 years) 
+                    <br>
+                    Population, Seniors (65 and older) 
+                  </p></details>
+                <details><summary>Median Household Income</summary>
+                  <p class="tab1">
+                  Average income in the past 12 months.
+                  </p></details>
+                <details><summary>Poverty Rate</summary>
+                  <p class="tab1">
+                    Percent of residents in families that are in poverty (below the Federal Poverty Level).
+                  </p></details>
+                <details><summary>Receiving Food Stamps</summary>
+                  <p class="tab1">
+                    Percent of households receiving Supplemental Nutrition Assistance Program (SNAP) benefits, formerly known as food stamps.
+                  </p></details>
+                  <details><summary>Public Assistnace Income</summary>
+                  <p class="tab1">
+                    Percent of households reporting public assistance income over the past 12 months. This includes general assistance and Temporary Aid to Needy Families (TANF), or cash public assistance. This excludes Supplemental Security Income (SSI) and noncash benefits such as food stamps.
+                  </p></details>
+                  </div>
+              
+              <div class="column"> 
+              <h4>Idenitfied Health Indicators</h4>
+              <br>
+                <details><summary>Adult Binge Drinking</summary>
+                  <p class="tab">Percent of adults who report binge drinking (men having 5 or more drinks on one occasion, women having 4 or more drinks on one occasion) in the past month.</p></details>
+                <details><summary>Adult Fruit and Veggies Servings</summary>
+                  <p class="tab">Percent of adults who reported eating five or more servings of fruits and vegetables (combined) daily.</p></details>
+                <details><summary>Adult Physical Inactivity</summary>
+                   <p class="tab">Percent of adults who reported that they did not participate in any physical activities or exercises in the past month.</p></details>
+                <details><summary>Adult Smoking</summary>
+                  <p class="tab">Percent of adults who report that they've smoked at least 100 cigarettes in their life and report that they now smoke cigarettes every day or some days.</p></details>
+                <details><summary>Adult Soda Consumption</summary>
+                  <p class="tab">Percent of adults who drank soda or pop or other sweetened drinks like sweetened iced tea, sports drinks, fruit punch or other fruit-flavored drinks at least once per day in the past month.</p></details>
+                <details><summary>Easy Access to Fruits and Veggies</summary>
+                  <p class="tab">Percent of adults who reported that it is very easy for them to get fresh fruits and vegetables.</p></details>
+                <details><summary>Food Access</summary>
+                  <p class="tab">Percent of residents who have low access to food, defined solely by distance: further than 1/2 mile from the nearest supermarket in an urban area, or further than 10 miles in a rural area.</p></details>
+                <details><summary>Hardship Index</summary>
+                  <p class="tab">The Hardship Index is a composite score reflecting hardship in the community (higher values indicate greater hardship). It incorporates unemployment, age dependency, education, per capita income, crowded housing, and poverty into a single score that allows comparison between geographies. It is highly correlated with other measures of economic hardship, such as labor force statistics, and with poor health outcomes. See technical notes for details.</p></details>
+                <details><summary>Life Expectancy</summary>
+                  <p class="tab">The average number of years a person may expect to live.</p></details>
+                <details><summary>Low Birthweight</summary>
+                  <p class="tab">Percent of births with a birthweight less than 2500 grams (5.5 pounds).</p></details>
+                <details><summary>Overall Health Status</summary>
+                  <p class="tab">Percent of adults who reported that their overall health is good, very good or excellent.</p></details>
+                <details><summary>Particulate Matter</summary>
+                  <p class="tab">Annual average concentration in micrograms per cubic meter. PM 2.5, or particulate matter smaller than 2.5 microns in diameter, is one of the most dangerous pollutants because the particles can penetrate deep into the alveoli of the lungs.</p></details>
+                <details><summary>Received Needed Care</summary>
+                  <p class="tab">Percent of adults who report that it is 'usually' or 'always' easy to get the care, tests or treatment they needed through their health plan.</p></details>
+                <details><summary>Routine Checkup </summary>
+                  <p class="tab">Percent of adults who visited a doctor or health care provider for a routine checkup in the past year.</p></details>
+                </div>
+                </div>
+                </div>
+              </div>
+          </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="databanner">
+  <div class="datacontainer">
+    <div class="datatxtcolor">
+    <h1><strong>Data Plots</strong></h1>
+      <p>Demographic data was collected from the Chicago Health Atlas. For this database, we idenitfied demographic population descriptors as well as various health indicators to provide behavioral, social, and environmental for context.</p>
+    <br>
+    
+    <div class="row" >
+      <div class="col-md-6">
+        <label for="deceases">Chronic Diseases:</label>
+        <br>
+        <select name="decease" id="decease" onchange="optionDeceaseChanged(this.value)">
+          <option value="diabetes">Diabetes</option>
+          <option value="diabetes_related">Diabetes related </option>
+          <option value="alzheimer">Alzheimer's disease</option>
+          <option value="cancer"> Cancer </option>
+          <option value = "hypertension"> Hypertension </option>
+          <option value = "adult_obesity">  Adult Obesity </option>
+          <option value ="coronary_heart_disease"> Coronary Heart Disease </option>
+        </select>        
+        </div>
+
+        <br>
+        
+        <div id="scatter"></div>
+        </div>
+      </div>
+
+      <br>
+    
+    <div class = "row">
+      <div class="col-md-6">
+      <br>
+        
+        <div id="scatter_soda"></div>
+      </div>
+      <div class="col-md-6">
+        <div id="scatter_smoking"></div>
+      </div>  
+    </div>
+    </div>
+  </div>
+  <br>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+  <script src="https:////cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+  </body>
+  
+  </html>
+  
